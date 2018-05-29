@@ -9,7 +9,7 @@ node{
 
     currentBuild.result = "SUCCESS"
     def dockerfile = "${scm.tokenize('/.')[-2]}_dockerfile"
-    String imageName ="${scm.tokenize('/.')[-2]}:${env.BUILD_ID}"
+    def imageName ="${scm.tokenize('/.')[-2]}:${env.BUILD_ID}"
     echo imageName
     echo dockerfile
 
