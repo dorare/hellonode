@@ -36,7 +36,7 @@ node {
             print "Environment will be : ${env.NODE_ENV}"
             print "Running docker tests"
             //Add tests
-            app = docker.build(imageName, "-f ${dockerfile} ./path/to/file")
+            app = docker.build(imageName, "-f ${dockerfile} .")
             //This will assign the repo name as the build name
 
         }
