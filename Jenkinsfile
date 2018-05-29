@@ -35,7 +35,7 @@ node {
         stage('Build') {
             print "Building docker tests"
             //Add tests
-            app = docker.build("${imageName}")
+            app = docker.build("my-image:${env.BUILD_ID}")
             //app = docker.build(imageName, "-f ${dockerfile} .")
             //This will assign the repo name as the build name
 
@@ -47,6 +47,7 @@ node {
             // TO DD - Add docker test here
             app.inside {
                 sh 'echo "Tests Completed"' //Replace this with real test when we have any
+                sh 'make test'
             }
 
         }
