@@ -8,15 +8,13 @@ node {
 
 
     currentBuild.result = "SUCCESS"
-    def dockerfile = "${currentBuild.displayName}_dockerfile"
-    def imageName = "${currentBuild.displayName}_image"
+    def imageName = "${currentBuild.displayName}:${env.BUILD_ID}"
     def app
     try {
         /*
       Checkout code from the vsts repository
      */
         stage('Checkout') {
-
             checkout scm
         }
         /*
@@ -33,9 +31,9 @@ node {
       */
 
         stage('Build') {
-            print "Building docker tests"
+            print "Building docker...."
             //Add tests
-            app = docker.build("my-image:${env.BUILD_ID}")
+            app = docker.build(imageName)
             //app = docker.build(imageName, "-f ${dockerfile} .")
             //This will assign the repo name as the build name
 
