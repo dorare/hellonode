@@ -35,7 +35,7 @@ node {
         stage('Build') {
             print "Building docker tests"
             //Add tests
-            app = docker.build(imageName)
+            app = docker.build("${imageName}")
             //app = docker.build(imageName, "-f ${dockerfile} .")
             //This will assign the repo name as the build name
 
