@@ -9,7 +9,7 @@ node("docker") {
 
     currentBuild.result = "SUCCESS"
     def dockerfile = "${currentBuild.displayName}_dockerfile"
-    def imageName "${currentBuild.displayName}_image"
+    def imageName = "${currentBuild.displayName}_image"
     def app
     try {
         /*
