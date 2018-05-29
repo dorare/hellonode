@@ -8,7 +8,7 @@ node {
 
 
     currentBuild.result = "SUCCESS"
-    def imageName = "${currentBuild.displayName}:${env.BUILD_ID}"
+    def imageName
     def app
     try {
         /*
@@ -33,6 +33,7 @@ node {
         stage('Build') {
             print "Building docker...."
             //Add tests
+            imageName = "${currentBuild.displayName}:${env.BUILD_ID}"
             app = docker.build(imageName)
             //app = docker.build(imageName, "-f ${dockerfile} .")
             //This will assign the repo name as the build name
