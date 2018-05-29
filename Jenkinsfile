@@ -46,7 +46,7 @@ node {
             print "Running docker tests"
             // TO DD - Add docker test here
             app.inside {
-                sh 'make test'
+                sh 'make check'
             }
 
         }
