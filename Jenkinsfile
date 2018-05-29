@@ -4,15 +4,13 @@
  This is the Duara Systems Jenkins file that will pull from the repository, test the scripts for any error - build an image and deploy the image to the google docker registries upon completion
 */
 
-node {
+node("docker") {
 
 
     currentBuild.result = "SUCCESS"
-    def dockerfile = "${scm.tokenize('/.')[-2]}_dockerfile"
-    def imageName = "${scm.tokenize('/.')[-2]}:${env.BUILD_ID}"
-
+    def dockerfile = "${currentBuild.displayName}_dockerfile"
+    def imageName "${currentBuild.displayName}_image"
     def app
-
     try {
         /*
       Checkout code from the vsts repository
