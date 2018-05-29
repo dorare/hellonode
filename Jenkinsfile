@@ -59,9 +59,15 @@ node {
              * Second, the 'latest' tag.
              * Pushing multiple tags is cheap, as all the layers are reused. */
             //Add the google registry here
+            /*
             docker.withRegistry('', 'google-registry-credentials') {
                 app.push("${env.BUILD_NUMBER}")
                 app.push("latest")
+             }
+            */
+            docker.withRegistry('https://us.gcr.io', 'gcr:[google_credentials]') {
+               app.push("${env.BUILD_NUMBER}")
+               app.push("latest")
 
             }
         }
