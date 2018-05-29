@@ -45,8 +45,8 @@ node {
             print "Running docker tests"
             // TO DD - Add docker test here
             app.inside {
-                sh 'echo "Tests Completed"' //Replace this with real test when we have any
-                sh 'make test'
+                sh 'echo "Tests Completed"' //Replace this with real test when we have tests
+
             }
 
         }
