@@ -10,6 +10,8 @@ node{
     currentBuild.result = "SUCCESS"
     def dockerfile = "${scm.tokenize('/.')[-2]}_dockerfile"
     String imageName ="${scm.tokenize('/.')[-2]}:${env.BUILD_ID}"
+    echo imageName
+    echo dockerfile
 
     def app 
 
@@ -83,7 +85,7 @@ node{
     catch (err) {
 
         currentBuild.result = "FAILURE"
-            mail body: "project build error is here: ${env.BUILD_URL}" ,
+            mail body: "Project build error is here: ${env.BUILD_URL}" ,
             from: 'xxxx@yyyy.com',
             replyTo: 'yyyy@yyyy.com',
             subject: 'project build failed',
