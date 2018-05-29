@@ -4,7 +4,7 @@
  This is the Duara Systems Jenkins file that will pull from the repository, test the scripts for any error - build an image and deploy the image to the google docker registries upon completion
 */
 
-node("docker") {
+node {
 
 
     currentBuild.result = "SUCCESS"
