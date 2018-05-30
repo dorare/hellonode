@@ -65,7 +65,7 @@ node {
                 app.push("latest")
              }
             */
-            docker.withRegistry('https://us.gcr.io', 'gcr:[google_credentials]') {
+            docker.withRegistry('https://gcr.io', 'gcr:[google_credentials]') {
                app.push("${env.BUILD_NUMBER}")
                app.push("latest")
 
@@ -77,10 +77,10 @@ node {
                 sh "docker rmi ${imageName}"
                 // Add mailing details here
                 mail body: 'Project build successful',
-                        from: 'xxxx@yyyyy.com',
-                        replyTo: 'xxxx@yyyy.com',
+                        from: 'subscriptions@duara.io',
+                        replyTo: 'dorare@duara.io',
                         subject: 'project build successful',
-                        to: 'yyyyy@yyyy.com'
+                        to:  'dorare@duara.io'
             }
 
 
@@ -89,10 +89,10 @@ node {
 
             currentBuild.result = "FAILURE"
             mail body: "project build error is here: ${env.BUILD_URL}",
-                    from: 'xxxx@yyyy.com',
-                    replyTo: 'yyyy@yyyy.com',
+                    from: 'subscriptions@duara.io',
+                    replyTo: 'dorare@duara.io',
                     subject: 'project build failed',
-                    to: 'zzzz@yyyyy.com'
+                    to: 'dorare@duara.io'
 
             throw err
         }
