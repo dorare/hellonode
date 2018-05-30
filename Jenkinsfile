@@ -33,7 +33,7 @@ node {
         stage('Build') {
             print "Building docker...."
             //Add tests
-            imageName = "gcr.io/robotic-fuze-194312/my-build:${env.BUILD_ID}"
+            imageName = "gcr.io/robotic-fuze-194312/build"
             app = docker.build(imageName)
             //app = docker.build(imageName, "-f ${dockerfile} .")
             //This will assign the repo name as the build name
