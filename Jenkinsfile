@@ -77,7 +77,7 @@ node {
                 sh "docker rmi ${imageName}"
                 // Add mailing details here
                 mail body: 'Project build successful',
-                        from: 'subscriptions@duara.io',
+                        from: 'mpangokali@gmail.com',
                         replyTo: 'dorare@duara.io',
                         subject: 'project build successful',
                         to:  'dorare@duara.io'
@@ -89,7 +89,7 @@ node {
 
             currentBuild.result = "FAILURE"
             mail body: "project build error is here: ${env.BUILD_URL}",
-                    from: 'subscriptions@duara.io',
+                    from: 'mpangokali@gmail.com',
                     replyTo: 'dorare@duara.io',
                     subject: 'project build failed',
                     to: 'dorare@duara.io'
