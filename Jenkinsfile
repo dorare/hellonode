@@ -1,7 +1,10 @@
 #!groovy
 
 /*
- This is the Duara Systems Jenkins file that will pull from the repository, test the scripts for any error - build an image and deploy the image to the google docker registries upon completion
+ * This is the Duara Systems Jenkins file that will pull from the repository when any change is made
+ * It will then build a docker image and test the scripts for any errors. 
+ * It will finally deploy the image to the google cloud registry upon completion
+
 */
 
 node {
@@ -12,23 +15,22 @@ node {
     def app
     try {
         /*
-      Checkout code from the vsts repository
-     */
+         * Checkout code from the vsts repository
+         */
         stage('Checkout') {
             checkout scm
         }
         /*
-         Print the environment variables in the Jenkins shell
+         * Print the environment variables in the Jenkins shell
          */
         stage('Environment') {
             sh 'git --version'
-            echo "Branch: ${env.BRANCH_NAME}"
             sh 'docker -v'
             sh 'printenv'
         }
         /*
-      Build a docker image from the Dockerfile pulled from the repo
-      */
+         * Build a docker image from the Dockerfile pulled from the repo
+         */
 
         stage('Build') {
             print "Building docker image..."
@@ -41,7 +43,7 @@ node {
         }
 
         stage('Test') {
-            print "Environment will be : ${env.NODE_ENV}"
+            print "Environment will be : ${env.STAGE_NAME}"
             print "Running docker tests"
             // TO DD - Add docker test here
             app.inside {
@@ -72,7 +74,7 @@ node {
 
                 sh "docker rmi ${imageName}"
                 // Add mailing details here
-                mail body: 'Project build successful',
+                mail body:"'Project build successful ${env.BUILD_URL}",
                         from: 'Mpangokali@gmail.com',
                         replyTo: 'dorare@duara.io',
                         subject: 'project build successful',
