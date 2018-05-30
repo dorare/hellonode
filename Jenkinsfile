@@ -57,15 +57,9 @@ node {
             /* Finally, we'll push the image with two tags:
              * First, the incremental build number from Jenkins
              * Second, the 'latest' tag.
-             * Pushing multiple tags is cheap, as all the layers are reused. */
-            //Add the google registry here
-            /*
-            docker.withRegistry('', 'google-registry-credentials') {
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
-             }
-            */
-            docker.withRegistry('https://gcr.io/robotic-fuze-194312', 'gcr:google_credentials') {
+             * Pushing multiple tags is cheap, as all the layers are reused. 
+	     */
+            docker.withRegistry('https://gcr.io', 'gcr:google_credentials') {
                app.push("${env.BUILD_NUMBER}")
                app.push("latest")
 
