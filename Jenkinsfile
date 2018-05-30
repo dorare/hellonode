@@ -65,7 +65,7 @@ node {
                 app.push("latest")
              }
             */
-            docker.withRegistry('https://gcr.io', 'gcr:google_credentials') {
+            docker.withRegistry('https://gcr.io/robotic-fuze-194312', 'gcr:google_credentials') {
                app.push("${env.BUILD_NUMBER}")
                app.push("latest")
 
