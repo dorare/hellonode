@@ -31,9 +31,9 @@ node {
       */
 
         stage('Build') {
-            print "Building docker...."
+            print "Building docker image..."
             //Add tests
-            imageName = "gcr.io/robotic-fuze-194312/build"
+            imageName = 'gcr.io/robotic-fuze-194312/build'
             app = docker.build(imageName)
             //app = docker.build(imageName, "-f ${dockerfile} .")
             //This will assign the repo name as the build name
@@ -61,9 +61,11 @@ node {
 	     */
             docker.withRegistry('https://gcr.io', 'gcr:google_credentials') {
                app.push("${env.BUILD_NUMBER}")
-               app.push("latest")
+               //app.push("latest")
+               
 
             }
+            echo 'Image pushed to repo'
         }
 
             stage('Cleanup') {
